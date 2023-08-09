@@ -11,6 +11,8 @@
 		E6F12ACB2A83CFEC00866208 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F12ACA2A83CFEC00866208 /* ContentView.swift */; };
 		E6F12ACD2A83CFF100866208 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6F12ACC2A83CFF100866208 /* Assets.xcassets */; };
 		E6F12AD02A83CFF100866208 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6F12ACF2A83CFF100866208 /* Preview Assets.xcassets */; };
+		E6F12ADB2A83D56100866208 /* FetchAvailableCarParks.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F12ADA2A83D56100866208 /* FetchAvailableCarParks.swift */; };
+		E6F12ADD2A83E1A400866208 /* CarParkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F12ADC2A83E1A400866208 /* CarParkResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		E6F12ACA2A83CFEC00866208 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E6F12ACC2A83CFF100866208 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E6F12ACF2A83CFF100866208 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E6F12ADA2A83D56100866208 /* FetchAvailableCarParks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchAvailableCarParks.swift; sourceTree = "<group>"; };
+		E6F12ADC2A83E1A400866208 /* CarParkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarParkResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +55,8 @@
 		E6F12AC72A83CFEC00866208 /* qshr */ = {
 			isa = PBXGroup;
 			children = (
+				E6F12AD92A83D53800866208 /* API */,
+				E6F12AD62A83D3DC00866208 /* Models */,
 				E6F12AC82A83CFEC00866208 /* qshrApp.swift */,
 				E6F12ACA2A83CFEC00866208 /* ContentView.swift */,
 				E6F12ACC2A83CFF100866208 /* Assets.xcassets */,
@@ -65,6 +71,22 @@
 				E6F12ACF2A83CFF100866208 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E6F12AD62A83D3DC00866208 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E6F12ADC2A83E1A400866208 /* CarParkResponse.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E6F12AD92A83D53800866208 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				E6F12ADA2A83D56100866208 /* FetchAvailableCarParks.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,7 +159,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6F12ADB2A83D56100866208 /* FetchAvailableCarParks.swift in Sources */,
 				E6F12ACB2A83CFEC00866208 /* ContentView.swift in Sources */,
+				E6F12ADD2A83E1A400866208 /* CarParkResponse.swift in Sources */,
 				E6F12AC92A83CFEC00866208 /* qshrApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
