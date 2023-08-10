@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct CarParkResponse: Codable {
+struct CarParksResponse: Codable {
     let items: [Item]
 }
 
 struct Item: Codable {
-    let timestamp: Date
+    let timestamp: String
     let carparkData: [CarParkData]
 
     enum CodingKeys: String, CodingKey {

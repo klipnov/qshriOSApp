@@ -8,17 +8,27 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @StateObject private var carParkViewModel = CarParkViewModel()
+    
     var body: some View {
         VStack {
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundColor(.accentColor)
-            Text("Hello, world!").onAppear {
-                CarParksData.fetchCarParksData()
-            }
         }
         .padding()
+        .task {
+            do {
+                try await carParkViewModel.loadCarParksData()
+            } catch {
+                print("Error loading car parks data.")
+            }
+            
+        }
+        
     }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
