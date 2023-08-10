@@ -12,18 +12,23 @@ struct ContentView: View {
     @StateObject private var carParkViewModel = CarParkViewModel()
     
     var body: some View {
-        NavigationStack{
-            List {
+        ScrollView(.vertical) {
                     ForEach(carParkViewModel.carParkMinMaxItems) { item in
                         VStack {
-                            Text("\(item.category.rawValue.uppercased())").fontWeight(.bold)
+                            Text("\(item.category.rawValue.uppercased())")
+                                .fontWeight(.bold)
+                            
+                            Divider()
+                                .padding(.bottom)
+                                
                             Text("HIGHEST (\(item.max[0].totalAvailableLots) lots available)")
                                 .multilineTextAlignment(.leading)
+                                .padding(.bottom, 2.0)
                             
                             VStack {
                                 ForEach(0..<item.max.count, id: \.self) { index in
                                     Text("\(item.max[index].carParkNumber)")
-                                }
+                                }.padding(.bottom)
                             }
                             
                             Text("LOWEST (\(item.min[0].totalAvailableLots) lots available)")
@@ -32,11 +37,11 @@ struct ContentView: View {
                                 ForEach(0..<item.min.count, id: \.self) { index in
                                     Text("\(item.min[index].carParkNumber)")
                                 }
-                            }
+                            }.padding(.bottom)
                         }
+                        .frame(maxWidth: .infinity)
                     }
-                }
-        }.task {
+                }.task {
             do {
                 try await carParkViewModel.loadCarParksData()
             } catch {
