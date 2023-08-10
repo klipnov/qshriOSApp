@@ -24,7 +24,6 @@ struct ContentView: View {
             } catch {
                 print("Error loading car parks data.")
             }
-            
         }
         
     }
