@@ -16,6 +16,10 @@ struct ContentView: View {
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundColor(.accentColor)
+            
+            ForEach(carParkViewModel.carParkMinMaxItems) { item in
+                Text("\(item.category.rawValue)")
+            }
         }
         .padding()
         .task {

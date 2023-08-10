@@ -9,8 +9,9 @@ import Foundation
 
 class CarParkViewModel: ObservableObject {
     
-    @Published var carParks: CarParksResponse? = nil
     @Published var carParksError = ""
+    
+    @Published var carParkMinMaxItems: [CarParkMinMax] = []
     
     func loadCarParksData() async throws -> Void {
         do {
@@ -30,7 +31,6 @@ class CarParkViewModel: ObservableObject {
         if let carParkItems = response?.items {
             processCarParkItems(items: carParkItems)
         }
-        carParks = response
     }
     
     func processCarParkItems(items: [Item]) -> Void {
@@ -54,10 +54,10 @@ class CarParkViewModel: ObservableObject {
             listCarParkItems.append(listCarParkItem)
         }
         
-        categorizeCarParksBasedOnTotalLots(listCarParkItems: listCarParkItems)
+        categorizeCarParksBasedOnTotalLots(listCarParkItems: listCarParkItems, category: .small)
     }
     
-    func categorizeCarParksBasedOnTotalLots(listCarParkItems: [ListCarParkItem]) -> Void {
+    func categorizeCarParksBasedOnTotalLots(listCarParkItems: [ListCarParkItem], category: CarParkCategory) -> Void {
         
         var small: [ListCarParkItem] = []
         var medium: [ListCarParkItem] = []
@@ -65,20 +65,39 @@ class CarParkViewModel: ObservableObject {
         var large: [ListCarParkItem] = []
         
         for item in listCarParkItems {
-            if (item.totalAvailableLots < 100) {
+            if (item.totalLots < 100) {
                 small.append(item)
-            } else if(item.totalAvailableLots >= 100 && item.totalAvailableLots < 300) {
+            } else if(item.totalLots >= 100 && item.totalLots < 300) {
                 medium.append(item)
-            } else if(item.totalAvailableLots >= 300 && item.totalAvailableLots < 400) {
+            } else if(item.totalLots >= 300 && item.totalLots < 400) {
                 big.append(item)
             } else {
                 large.append(item)
             }
         }
         
-        print(small)
+        carParkMinMaxItems.append(calculateMinMaxForTheCategory(items: small, category: .small))
+        carParkMinMaxItems.append(calculateMinMaxForTheCategory(items: medium, category: .medium))
+        carParkMinMaxItems.append(calculateMinMaxForTheCategory(items: big, category: .big))
+        carParkMinMaxItems.append(calculateMinMaxForTheCategory(items: large, category: .large))
+        
     }
     
+    func calculateMinMaxForTheCategory(items: [ListCarParkItem], category: CarParkCategory) -> CarParkMinMax {
+        let categoryMax = items.max(by: { $0.totalAvailableLots < $1.totalAvailableLots })
+        let categoryMin = items.min(by: { $0.totalAvailableLots < $1.totalAvailableLots })
+        
+        let finalCategoryMin = items.filter { item in
+            return item.totalAvailableLots == categoryMin?.totalAvailableLots
+        }
+        
+        let finalCategoryMax = items.filter { item in
+            return item.totalAvailableLots == categoryMax?.totalAvailableLots
+        }
+        
+        return CarParkMinMax(id: category, category: category, min: finalCategoryMin, max: finalCategoryMax)
+    }
+        
     func getSumOfTotalLots(carParkInfo: [CarParkInfo]) -> Int {
         return carParkInfo.reduce(0) { (partialResult, item) -> Int in
             return partialResult + (Int(item.totalLots) ?? 0)
