@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E618EFD12A8505D700FE105F /* CarParkItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E618EFD02A8505D700FE105F /* CarParkItem.swift */; };
 		E6F12AC92A83CFEC00866208 /* qshrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F12AC82A83CFEC00866208 /* qshrApp.swift */; };
 		E6F12ACB2A83CFEC00866208 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F12ACA2A83CFEC00866208 /* ContentView.swift */; };
 		E6F12ACD2A83CFF100866208 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6F12ACC2A83CFF100866208 /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E618EFD02A8505D700FE105F /* CarParkItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarParkItem.swift; sourceTree = "<group>"; };
 		E6F12AC52A83CFEC00866208 /* qshr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = qshr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6F12AC82A83CFEC00866208 /* qshrApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = qshrApp.swift; sourceTree = "<group>"; };
 		E6F12ACA2A83CFEC00866208 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				E6F12AE32A84836E00866208 /* CarParksResponse.swift */,
+				E618EFD02A8505D700FE105F /* CarParkItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -175,6 +178,7 @@
 				E6F12AC92A83CFEC00866208 /* qshrApp.swift in Sources */,
 				E6F12AE42A84836E00866208 /* CarParksResponse.swift in Sources */,
 				E6F12AE02A8469B600866208 /* CarParkViewModel.swift in Sources */,
+				E618EFD12A8505D700FE105F /* CarParkItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
