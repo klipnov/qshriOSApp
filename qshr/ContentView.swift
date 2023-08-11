@@ -16,12 +16,14 @@ struct ContentView: View {
                     ForEach(carParkViewModel.carParkMinMaxItems) { item in
                         VStack {
                             Text("\(item.category.rawValue.uppercased())")
+                                .font(.title)
                                 .fontWeight(.bold)
                             
                             Divider()
                                 .padding(.bottom)
                                 
                             Text("HIGHEST (\(item.max[0].totalAvailableLots) lots available)")
+                                .font(.headline)
                                 .multilineTextAlignment(.leading)
                                 .padding(.bottom, 2.0)
                             
@@ -32,6 +34,7 @@ struct ContentView: View {
                             }
                             
                             Text("LOWEST (\(item.min[0].totalAvailableLots) lots available)")
+                                .font(.headline)
                             
                             VStack {
                                 ForEach(0..<item.min.count, id: \.self) { index in
@@ -40,8 +43,10 @@ struct ContentView: View {
                             }.padding(.bottom)
                         }
                         .frame(maxWidth: .infinity)
+                        .padding(.bottom, 16.0)
                     }
-                }.task {
+                }
+        .task {
             do {
                 try await carParkViewModel.loadCarParksData()
             } catch {
