@@ -12,11 +12,14 @@ class CarParkViewModel: ObservableObject {
     @Published var carParksError = ""
     
     @Published var carParkMinMaxItems: [CarParkMinMax] = []
+    @Published var carParkDataTimeStamp = ""
     
     func loadCarParksData() async throws -> Void {
         do {
             if let data = try await CarParksAPI.getCarParks() {
                 await MainActor.run {
+                    carParkMinMaxItems = []
+                    carParkDataTimeStamp = data.items[0].timestamp
                     processCarParksResponse(response: data)
                 }
             }

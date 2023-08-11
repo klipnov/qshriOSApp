@@ -10,11 +10,33 @@ import SwiftUI
 struct ContentView: View {
     
     @StateObject private var carParkViewModel = CarParkViewModel()
+    let timer = Timer.publish(every: 60, on: .main, in: .common)
+        .autoconnect()
+        .receive(on: RunLoop.main)
+        .prepend(Date())
+    
+    func loadData() {
+        Task {
+            do {
+                try await carParkViewModel.loadCarParksData()
+            } catch {
+                print("Error loading car parks data.")
+            }
+        }
+    }
     
     var body: some View {
+                
         ScrollView(.vertical) {
                     ForEach(carParkViewModel.carParkMinMaxItems) { item in
                         VStack {
+                            
+                            Text("Data as of: \(carParkViewModel.carParkDataTimeStamp)")
+                                .padding(.bottom)
+                            
+                            Divider()
+                                .padding(.bottom)
+                            
                             Text("\(item.category.rawValue.uppercased())")
                                 .font(.title)
                                 .fontWeight(.bold)
@@ -46,12 +68,8 @@ struct ContentView: View {
                         .padding(.bottom, 16.0)
                     }
                 }
-        .task {
-            do {
-                try await carParkViewModel.loadCarParksData()
-            } catch {
-                print("Error loading car parks data.")
-            }
+        .onReceive(timer) { timer in
+            loadData()
         }
         
     }
